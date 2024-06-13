@@ -3,7 +3,7 @@ import {
   EventTypes,
   IEvent,
   IEventVisual,
-} from "@/types/event";
+} from "../types/event";
 import moment from "moment";
 
 export async function getEventsFetch(date: Date): Promise<IEventVisual[]> {

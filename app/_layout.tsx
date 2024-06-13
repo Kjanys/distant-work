@@ -30,7 +30,7 @@ export default function RootLayout() {
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
-      router.navigate("tabs");
+      router.navigate("/tabs/calendar");
     }
   }, [loaded]);
 
@@ -70,7 +70,7 @@ function RootLayoutNav() {
     >
       <ApplicationProvider {...eva} theme={eva.light}>
         <ThemeProvider value={DarkTheme}>
-          <Stack initialRouteName="tabs">
+          <Stack initialRouteName="/tabs/calendar">
             <Stack.Screen
               name="tabs"
               options={{ headerShown: false, title: "Главная" }}

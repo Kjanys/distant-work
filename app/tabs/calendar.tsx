@@ -1,5 +1,5 @@
-import { getEventsFetch } from "@/api/api";
-import Colors from "@/constants/Colors";
+import { getEventsFetch } from "../../api/api";
+import Colors from "../../constants/Colors";
 import "dayjs/locale/ru";
 import { router } from "expo-router";
 import React, { useContext, useEffect, useMemo, useState } from "react";
@@ -11,7 +11,7 @@ import {
   IEventVisual,
 } from "../../types/event";
 import { Context } from "../_layout";
-import { darkTheme } from "./theme-config";
+import { darkTheme } from "../../constants/theme-config";
 
 export default function CalendarTab() {
   const date = new Date();

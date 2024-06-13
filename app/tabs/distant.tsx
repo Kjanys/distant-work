@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
 
-import { postNewEventFetch } from "@/api/api";
-import { View } from "@/components/Themed";
-import Colors from "@/constants/Colors";
+import { postNewEventFetch } from "../../api/api";
+import { View } from "../../components/Themed";
+import Colors from "../../constants/Colors";
 import {
   Button,
   CalendarRange,
@@ -15,10 +15,20 @@ import React, { useContext, useState } from "react";
 import { Text } from "react-native";
 import { EventTypes, IEvent } from "../../types/event";
 import { Context } from "../_layout";
-import { formatDateService, localeDateService } from "./date-config";
+import {
+  formatDateService,
+  localeDateService,
+} from "../../constants/date-config";
+import { router } from "expo-router";
+
+enum ButtonTitle {
+  accept = "Подтвердить",
+  loadding = "Подтверждение...",
+}
 
 export default function DistantTab() {
   const [title, setTitle] = useState("");
+  const [btnTitle, setBtnTitle] = useState<ButtonTitle>(ButtonTitle.accept);
   const [vacation, setVacation] = useState(false);
   const [dateStart, setDateStart] = useState(new Date());
   const [range, setRange] = useState<CalendarRange<Date>>({
@@ -34,8 +44,11 @@ export default function DistantTab() {
       start: vacation ? range.startDate! : dateStart,
       end: vacation ? range.endDate! : dateStart,
     };
+    setBtnTitle(ButtonTitle.loadding);
     const pushedEvent = await postNewEventFetch(newEvent);
     context.setEvents([...context.events, pushedEvent]);
+    setBtnTitle(ButtonTitle.accept);
+    router.navigate("/tabs/calendar");
   }
 
   function genDatePart(vacation: boolean) {
@@ -94,8 +107,12 @@ export default function DistantTab() {
           </Text>
         )}
       </CheckBox>
-      <Button style={styles.formBtn} onPress={() => sendNewEvent()}>
-        Подтвердить
+      <Button
+        style={styles.formBtn}
+        onPress={() => sendNewEvent()}
+        disabled={btnTitle === ButtonTitle.loadding}
+      >
+        {btnTitle}
       </Button>
     </View>
   );

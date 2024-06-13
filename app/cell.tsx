@@ -1,5 +1,5 @@
-import { changeEventFetch, deleteEventFetch } from "@/api/api";
-import Colors from "@/constants/Colors";
+import { changeEventFetch, deleteEventFetch } from "../api/api";
+import Colors from "../constants/Colors";
 import { AntDesign, FontAwesome, FontAwesome6 } from "@expo/vector-icons";
 import {
   Button,
@@ -23,7 +23,7 @@ import {
   IEventVisual,
 } from "../types/event";
 import { Context } from "./_layout";
-import { formatDateService, localeDateService } from "./tabs/date-config";
+import { formatDateService, localeDateService } from "../constants/date-config";
 
 export default function ModalScreen() {
   const context = useContext(Context);

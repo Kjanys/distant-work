@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "distant-work",
+    "name": "Удаленка",
     "slug": "distant-work",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -25,10 +25,11 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/icon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
